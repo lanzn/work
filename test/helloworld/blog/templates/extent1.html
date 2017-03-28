@@ -1,0 +1,17 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Upload Successfully</title>
+    </head>
+    <body>
+        <a href="/blog">电影列表(点击返回列表页)</a>
+		<p></p>
+        {% for name in names %}
+		{% if name.id == 1%}
+		<a href="{{name.link}}">{{name.name}} （点击进入原链接）</a>
+		<p>内容简介:{{name.body}}</p>
+        <br>
+		{% endif %}
+        {% endfor %}
+    </body>
+</html>

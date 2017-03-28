@@ -1,0 +1,19 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Upload Successfully</title>
+    </head>
+    <body>
+        <p>电影列表</p>
+        {% for name in names %}
+		{% if name.id == 1 %}
+		<a href="extent1">{{name.id}}  {{name.name}} 点击进入详情页</a>
+        <br>
+		{% endif %}
+		{% if name.id == 2 %}
+		<a href="extent2">{{name.id}}  {{name.name}} 点击进入详情页</a>
+        <br>
+		{% endif %}
+        {% endfor %}
+    </body>
+</html>
