@@ -1,19 +1,30 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Upload Successfully</title>
-    </head>
-    <body>
-        <p>电影列表</p>
-        {% for name in names %}
-		{% if name.id == 1 %}
-		<a href="extent1">{{name.id}}  {{name.name}} 点击进入详情页</a>
-        <br>
-		{% endif %}
-		{% if name.id == 2 %}
-		<a href="extent2">{{name.id}}  {{name.name}} 点击进入详情页</a>
-        <br>
-		{% endif %}
-        {% endfor %}
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Upload Successfully</title>
+	</head>
+	<body>
+		<p>电影列表</p>
+		{% block content %} 
+			{% for name in posts %}
+			<a href="extent/{{ name.id }}">{{name.id}}  {{name.name}} 点击进入详情页</a>
+			<br>
+			{% endfor %}
+		{% endblock %}
+
+		{% ifnotequal curPage 1 %}  
+			<a href="?curPage={{ curPage }}&allPage={{ allPage }}&pageType=pageUp">  
+				上一页  
+			</a>  
+		{% endifnotequal %}   
+  
+		第{{ curPage }}/{{ allPage }}页   
+  
+		<!-- 如果当前是最后一页，就不显示【下一页】链接 -->  
+		{% ifnotequal curPage allPage %}  
+			<a href="?curPage={{ curPage }}&allPage={{ allPage }}&pageType=pageDown">  
+				下一页  
+			</a>  
+		{% endifnotequal %}  
+	</body>
 </html>

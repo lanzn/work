@@ -7,12 +7,15 @@ def get_movies(start):
     lists = []
     html = requests.get(url)
     soup = BeautifulSoup(html.content, "html.parser")
-    items = soup.find("ol", "grid_view").find_all("li",limit=2)
+    items = soup.find("ol", "grid_view").find_all("li",limit=20)
     for i in items:
         movie = {}
         movie["rank"] = i.find("em").text
         movie["link"] = i.find("div","pic").find("a").get("href")
+        #movie["poster"] = i.find("div","pic").find("a").find('img').get("src")
         movie["name"] = i.find("span", "title").text
+        #movie["score"] = i.find("span", "rating_num").text
+        #movie["quote"] = i.find("span", "inq").text if(i.find("span", "inq")) else ""
         nexturl=movie["link"]
         print(nexturl)
         nexthtml=requests.get(nexturl)
@@ -30,7 +33,7 @@ if __name__ == "__main__":
     createTab = """CREATE TABLE movies(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-        body VARCHAR (500) CHARACTER SET utf8 COLLATE utf8_general_ci ,
+        body text CHARACTER SET utf8 COLLATE utf8_general_ci ,
         rank VARCHAR(4) NOT NULL,
         link VARCHAR(50) NOT NULL
     )"""
